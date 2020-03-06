@@ -16,7 +16,7 @@ namespace Repository
             LoadTeams();
         }
         static List<Team> _teams;
-        public List<Team> teamsInGame = new List<Team>();
+        public static List<Team> teamsInGame = new List<Team>();
         readonly static TeamList t = new TeamList();
            
         private static void LoadTeams()
@@ -27,9 +27,10 @@ namespace Repository
             new Team() { Id = 3, Name = "team3", result = 0, players =new List<Player>() }
         };
                 t.allTeams = _teams;
+           
         }
        
-        public List<Team> GetList()
+        public  List<Team> GetList()
         { 
             List<Team> allTeams = t.GetElementsList();
             return allTeams;
@@ -43,38 +44,23 @@ namespace Repository
             return teamsInGame;
 
         }
-        //public Team RandomTeam()
-        //{
-        //    Random rnd = new Random();
-        //    int r = rnd.Next(ChooseTeamsForGame().Count);
-        //    return teamsInGame[r];
+       
+        public Team FirstTeamInGame()
+        { 
+            return  teamsInGame?[0];
+        }
 
-            
-
-        //}
-        //public  List<Team> ChooseTeams(List<Team> allTeams, List<Team> players)
-        //{
-        //    while (players.Count < 2)
-        //    {
-        //        Random rnd = new Random();
-        //        int r = rnd.Next(allTeams.Count);
-        //        if (!players.Contains(allTeams[r]))
-        //        {
-        //            players.Add(allTeams[r]);
-        //            Console.WriteLine($"{(string)allTeams[r].Name}  is playing today");
-        //        }
-        //    }
-        //    return players;
-
-        //}
-
-
-        public  Team ChooseTeam(List<Team> players)
+        public Team SecondTeamInGame()
         {
+            return teamsInGame?[1];
+        }
 
+        public  Team ChooseRandomTeam()
+        {
+            ChooseTeamsForGame();
             Random rnd = new Random();
-            int r = rnd.Next(players.Count);
-            return players[r];
+            int r = rnd.Next(teamsInGame.Count);
+            return teamsInGame[r];
 
         }
         public Team GetTeamById(int Id)

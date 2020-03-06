@@ -21,13 +21,13 @@ namespace TeamPract1
             score.Whistle();
 
             ITeam teams = Factory.GetTeamModuleObject();
-            teams.AddToTeam(1, 1);
-            teams.AddToTeam(2, 1);
-            teams.AddToTeam(3, 1);
-            teams.AddToTeam(1, 1);
-            teams.AddToTeam(5, 2);
-            teams.AddToTeam(7, 1);
-            teams.AddToTeam(2, 2);
+            teams.AddToTeam(4, teams.ChooseRandomTeam().Id);
+            teams.AddToTeam(2, teams.ChooseRandomTeam().Id);
+            teams.AddToTeam(3, teams.ChooseRandomTeam().Id);
+            teams.AddToTeam(1, teams.ChooseRandomTeam().Id);
+            teams.AddToTeam(5, teams.ChooseRandomTeam().Id);
+            teams.AddToTeam(7, teams.ChooseRandomTeam().Id);
+            teams.AddToTeam(2, teams.ChooseRandomTeam().Id);
 
             IPlayer players = Factory.GetPlayerModuleObject();
             players.Shoot(1,2);
@@ -35,7 +35,7 @@ namespace TeamPract1
 
             ICoach coach = Factory.GetCoachModuleObject();
             coach.plusForTeam(coach.GetCoachById(1));
-            score.ShowScore(teams.GetTeamById(1), teams.GetTeamById(2));
+            score.ShowScore(teams.ChooseRandomTeam(), teams.ChooseRandomTeam());
 
 
             coach.plusForTeam(coach.GetCoachById(1));

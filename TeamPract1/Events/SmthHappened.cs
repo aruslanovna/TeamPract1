@@ -32,20 +32,28 @@ namespace TeamPract1.Events
 
         public void Gol(int playerId, Game game)
         {
-            var team = teamMod.GetList().Select(p => p).Where(p => p.players.Any(x => x.Id == playerId)).First();
-            if (isActive == true)
+            try
             {
-                if (team?.result < game.MaxScore)
-                {
-                  //  team.result += 1;
-                    ChangeScoreNotify?.Invoke(this, new GameEventArgs("Goal!!!" + Environment.NewLine + $"Team {team.Name} scored a goal. Now they have {team.result} points"));
-                }
-                else
-                {
+                var team = teamMod.GetList().Select(p => p).Where(p => p.players.Any(x => x.Id == playerId)).First();
+                 if (isActive == true)
+                            {
+                                if (team?.result < game.MaxScore)
+                                {
+                                  //  team.result += 1;
+                                    ChangeScoreNotify?.Invoke(this, new GameEventArgs("Goal!!!" + Environment.NewLine + $"Team {team.Name} scored a goal. Now they have {team.result} points"));
+                                }
+                                else
+                                {
                     
-                    FinalResult();
-                }
+                                    FinalResult();
+                                }
+                            }
             }
+            catch
+            {
+                Console.WriteLine(StringLiterals.NoSuchPlayerInTeam);
+            }
+           
 
         }
 

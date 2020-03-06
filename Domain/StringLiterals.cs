@@ -10,5 +10,6 @@ namespace Domain
         public static string Final {get { return Environment.NewLine + "The last whistle! Thank you all for the game"; } }
 
         public static object NoSuchTeam { get { return "Team with this Id doesn't play in this match"; } }
+        public static object NoSuchPlayerInTeam { get { return "Team doesn't contain this player"; } }
     }
 }

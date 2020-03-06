@@ -14,9 +14,9 @@ namespace BLLayer
         {
             _teamObj = Repository.Factory.GetTeamModuleObject();
         }
-        public Team ChooseTeam(List<Team> players)
+        public Team ChooseRandomTeam()
         {
-            return _teamObj.ChooseTeam(players);
+            return _teamObj.ChooseRandomTeam();
         }
         public void AddToTeam(int IdPlayer, int IdTeam)
         {
