@@ -1,6 +1,8 @@
 ﻿using Domain;
 using Repository.TeamRepository;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Repository
 {
@@ -10,14 +12,18 @@ namespace Repository
         {
             LoadCoach();
         }
-        TeamModule teamModule = new TeamModule(); 
+        TeamModule teamModule = new TeamModule();
+        List<Coach> coachList = new List<Coach>();
         private void LoadCoach()
         {
-            Coach c1 = new Coach() { Id = 1, Name = "Chan", Experience = 39 };
-            c1.Team = teamModule.GetTeamById(c1.Id);
+            coachList = new List<Coach> {
+            new Coach() { Id = 1, Name = "Chan", Experience = 39, Team = teamModule.GetTeamById(1) },
 
-            Coach c2 = new Coach() { Id = 2, Name = "Fiona", Experience = 50 };
-            c2.Team = teamModule.GetTeamById(c2.Id);
+
+
+            new Coach() { Id = 2, Name = "Fiona", Experience = 50, Team = teamModule.GetTeamById(2) }
+
+        };
         }
 
         public void plusForTeam(Coach coach)
@@ -32,6 +38,12 @@ namespace Repository
                 team.result += 4;
             }
 
+        }
+
+        public Coach GetCoachById(int coachId)
+        {
+            Coach c = coachList.Select(x => x).Where(x=>x.Id==coachId).FirstOrDefault();
+            return c;
         }
     }
 }

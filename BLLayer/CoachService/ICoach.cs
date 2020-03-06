@@ -9,5 +9,6 @@ namespace BLLayer.CoachService
    public interface ICoach
     {
         void plusForTeam(Coach coach);
+        Coach GetCoachById(int coach);
     }
 }

@@ -2,6 +2,7 @@
 using Repository.TeamRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Repository
 {
@@ -11,14 +12,15 @@ namespace Repository
         {
             LoadReferee();
         }
-        private List<Referee> _referee;
+        private List<Referee> refereeList;
         Referee referee1;
         TeamModule teamMod = new TeamModule();
         public void LoadReferee()
         {
+            refereeList = new List<Referee> {
+                new Referee() { Id = 1, Experience = 30, FavouriteTeam = teamMod.RandomTeam(), Name = "Ivan Petrovich" }
 
-            referee1 = new Referee() { Id = 1, Experience = 30, FavouriteTeam = teamMod.RandomTeam(), Name = "Ivan Petrovich" };
-      
+                 };
         }
 
         
@@ -26,6 +28,12 @@ namespace Repository
         {
             Team favTeam = referee.FavouriteTeam;
             favTeam.result += 3;
+        }
+
+        public Referee GetRefereeById(int refereeId)
+        {
+            Referee r = refereeList.Select(x => x).Where(x => x.Id == refereeId).FirstOrDefault();
+            return r;
         }
     }
 }

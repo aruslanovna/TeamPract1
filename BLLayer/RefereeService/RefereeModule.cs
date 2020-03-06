@@ -20,6 +20,10 @@ namespace BLLayer.RefereeService
         {
             _refereeObj.addToFavouriteTeam(referee);
         }
-       
+
+        public Referee GetRefereeById(int referee)
+        {
+            return _refereeObj.GetRefereeById(referee);
+        }
     }
 }

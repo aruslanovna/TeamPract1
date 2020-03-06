@@ -13,61 +13,39 @@ namespace TeamPract1
     {
         static void Main(string[] args)
         {
-
-            
-           
-            IPlayerModule players = Factory.GetPlayerModuleObject();
             ITeamModule teams = Factory.GetTeamModuleObject();
-            teams.AddToTeam(1,1);
+            teams.AddToTeam(1, 1);
             teams.AddToTeam(2, 1);
             teams.AddToTeam(3, 1);
             teams.AddToTeam(1, 1);
             teams.AddToTeam(5, 2);
             teams.AddToTeam(7, 1);
             teams.AddToTeam(2, 2);
+
+            IPlayerModule players = Factory.GetPlayerModuleObject();
             players.Shoot(1,2);
             players.Shoot(1, 2);
-            Console.WriteLine(teams.GetTeamById(1).result);
+
+            ICoachModule coach = Factory.GetCoachModuleObject();
+            coach.plusForTeam(coach.GetCoachById(1));
+
+            
             List<Player> p = teams.GetTeamById(1).players;
 
-          foreach(var t in p)
+
+            IRefereeModule referee = Factory.GetRefereeModuleObject();
+            referee.addToFavouriteTeam(referee.GetRefereeById(1));
+
+            Console.WriteLine(teams.GetTeamById(1).result);
+
+
+            foreach (var t in p)
             {
                 Console.WriteLine($"{t.Name} added to team");
             }
             
-            ICoachModule coach = Factory.GetCoachModuleObject();
+         
            
-            IRefereeModule referee = Factory.GetRefereeModuleObject();
-           
-
-            //team1.players.Add(player1);
-            //team1.players.Add(player2);
-            //team1.players.Add(player3);
-            //team1.players.Add(player4);
-            //team1.players.Add(player5);
-            //team1.players.Add(player6);
-            //team2.players.Add(player7);
-            //team2.players.Add(player8);
-            //team2.players.Add(player9);
-            //team2.players.Add(player10);
-            //team2.players.Add(player11);
-            //team2.players.Add(player12);
-
-            //TeamsList allTeams = new TeamsList();
-            //allTeams.Add(team1);
-            //allTeams.Add(team2);
-            //allTeams.Add(team3);
-
-
-
-            //  List<Team> teamsInGame = new List<Team>();
-            //  ChooseTeam(allTeams.GetElementsList(), teamsInGame);
-            // Referee referee = new Referee(1,"MainPerson", ChooseTeamForGoal(teamsInGame), 34);
-
-
-
-            //Game game = new Game(teamsInGame, referee, DateTime.Now, SmthHappened.maxScore);
-
 
 
             //SmthHappened score = new SmthHappened();
