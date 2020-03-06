@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using TeamPract1.Events;
-
-
 using Domain;
-using Repository;
+
+using BLLayer.TeamService;
+using BLLayer;
+using BLLayer.CoachService;
+using BLLayer.PlayerService;
+using BLLayer.RefereeService;
 
 namespace TeamPract1
 {
@@ -13,7 +16,11 @@ namespace TeamPract1
     {
         static void Main(string[] args)
         {
-            ITeamModule teams = Factory.GetTeamModuleObject();
+            SmthHappened score = new SmthHappened();
+            score.ChangeScoreNotify += DisplayMessage;
+            score.Whistle();
+
+            ITeam teams = Factory.GetTeamModuleObject();
             teams.AddToTeam(1, 1);
             teams.AddToTeam(2, 1);
             teams.AddToTeam(3, 1);
@@ -22,41 +29,40 @@ namespace TeamPract1
             teams.AddToTeam(7, 1);
             teams.AddToTeam(2, 2);
 
-            IPlayerModule players = Factory.GetPlayerModuleObject();
+            IPlayer players = Factory.GetPlayerModuleObject();
             players.Shoot(1,2);
             players.Shoot(1, 2);
 
-            ICoachModule coach = Factory.GetCoachModuleObject();
+            ICoach coach = Factory.GetCoachModuleObject();
             coach.plusForTeam(coach.GetCoachById(1));
+            score.ShowScore(teams.GetTeamById(1), teams.GetTeamById(2));
 
-            
+
+            coach.plusForTeam(coach.GetCoachById(1));
+            score.ShowScore(teams.GetTeamById(1), teams.GetTeamById(2));
             List<Player> p = teams.GetTeamById(1).players;
 
+            
 
-            IRefereeModule referee = Factory.GetRefereeModuleObject();
+
+            IReferee referee = Factory.GetRefereeModuleObject();
+            referee.addToFavouriteTeam(referee.GetRefereeById(1));
             referee.addToFavouriteTeam(referee.GetRefereeById(1));
 
-            Console.WriteLine(teams.GetTeamById(1).result);
 
+            score.ShowScore(teams.GetTeamById(1), teams.GetTeamById(2));
 
-            foreach (var t in p)
-            {
-                Console.WriteLine($"{t.Name} added to team");
-            }
-            
-         
            
 
 
-            //SmthHappened score = new SmthHappened();
-            //SomebodyAction playerAction = new SomebodyAction();
-            //playerAction.team = teamsInGame;
-            //score.ChangeScoreNotify += DisplayMessage;
-            //score.Whistle(game);
-            //playerAction.Shoot(player1,player11);
-            //score.Gol(ChooseTeamForGoal(teamsInGame),game);
-            //score.Gol(ChooseTeamForGoal(teamsInGame), game);
-            //score.Gol(ChooseTeamForGoal(teamsInGame), game);
+            Game game = new Game();
+
+
+
+           
+            // playerAction.Shoot(player1, player11);
+            score.Gol(1, game);
+
             //score.RefereePrefer(referee);
             //score.CouchTime(coach1);
             //score.CouchTime(coach1);
@@ -67,7 +73,7 @@ namespace TeamPract1
             //score.Gol(ChooseTeamForGoal(teamsInGame), game);
             //score.Gol(ChooseTeamForGoal(teamsInGame), game);
             //score.Gol(ChooseTeamForGoal(teamsInGame), game);
-            //score.ShowScore(teamsInGame[0], teamsInGame[1]);
+            score.ShowScore(teams.GetTeamById(1), teams.GetTeamById(2));
 
             Console.ReadKey();
 
@@ -76,11 +82,7 @@ namespace TeamPract1
         private static void DisplayMessage(object sender, GameEventArgs e)
         {
             Console.WriteLine(e.Message);
-
         }
-
-
-
 
     }
 }

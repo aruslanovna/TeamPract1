@@ -13,8 +13,8 @@ namespace Repository
             LoadReferee();
         }
         private List<Referee> refereeList;
-        Referee referee1;
-        TeamModule teamMod = new TeamModule();
+
+        readonly TeamModule teamMod = new TeamModule();
         public void LoadReferee()
         {
             refereeList = new List<Referee> {

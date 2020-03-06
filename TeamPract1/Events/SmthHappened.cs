@@ -1,7 +1,9 @@
-﻿using Domain;
-
+﻿
+using Domain;
+using Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 
@@ -12,7 +14,7 @@ namespace TeamPract1.Events
         public const int maxScore = 3;
         public bool isActive = true;
 
-       
+        readonly TeamModule teamMod = new TeamModule();
 
      
         public delegate void ScoreHandler(object sender, GameEventArgs e);
@@ -21,15 +23,16 @@ namespace TeamPract1.Events
 
 
 
-        public void Whistle(Game game)
+        public void Whistle()
         {
             isActive = true;
             ChangeScoreNotify?.Invoke(this, new GameEventArgs(Environment.NewLine + "ARE YOU READY? " + Environment.NewLine + "The game started! "));
         }
 
 
-        public void Gol(Team team, Game game)
+        public void Gol(int playerId, Game game)
         {
+            var team = teamMod.GetList().Select(p => p).Where(p => p.players.Any(x => x.Id == playerId)).First();
             if (isActive == true)
             {
                 if (team.result < game.MaxScore)

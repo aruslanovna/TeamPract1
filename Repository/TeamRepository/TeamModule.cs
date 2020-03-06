@@ -17,7 +17,7 @@ namespace Repository
         }
         static List<Team> _teams;
         public List<Team> teamsInGame = new List<Team>();
-        static TeamList t = new TeamList();
+        readonly static TeamList t = new TeamList();
            
         private static void LoadTeams()
         {

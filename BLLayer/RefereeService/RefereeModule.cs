@@ -1,7 +1,7 @@
 
 ﻿
 using Domain;
-using Repository;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +14,7 @@ namespace BLLayer.RefereeService
         Repository.IRefereeModule _refereeObj;
         public RefereeModule()
         {
-            _refereeObj = Factory.GetRefereeModuleObject();
+            _refereeObj = Repository.Factory.GetRefereeModuleObject();
         }
         public void addToFavouriteTeam(Referee referee)
         {

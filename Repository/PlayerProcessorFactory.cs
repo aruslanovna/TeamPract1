@@ -9,7 +9,7 @@ namespace Repository
 {
     public class PlayerProcessorFactory : IPlayerProcessorFactory
     {
-        List<Player> players = new List<Player>();
+        readonly List<Player> players = new List<Player>();
         public void DeleteFromField(int Id)
         {
             Player player = players.Select(t => t).Where(t => t.Id == Id).FirstOrDefault();

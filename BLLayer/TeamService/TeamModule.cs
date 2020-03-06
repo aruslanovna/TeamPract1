@@ -5,12 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BLLayer.NewFolder1
+namespace BLLayer
 {
    public class TeamModule:ITeam
     {
         Repository.ITeamModule _teamObj;
-
+        public TeamModule()
+        {
+            _teamObj = Repository.Factory.GetTeamModuleObject();
+        }
         public Team ChooseTeam(List<Team> players)
         {
            return _teamObj.ChooseTeam(players);

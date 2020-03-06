@@ -15,7 +15,7 @@ namespace Repository
             LoadPlayers();
         }
 
-       TeamModule teamMod = new TeamModule();
+        readonly TeamModule teamMod = new TeamModule();
         private static List<Player> _players;
        
         public List<Player> GetPlayers()
