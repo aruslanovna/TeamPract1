@@ -43,30 +43,30 @@ namespace Repository
             return teamsInGame;
 
         }
-        public Team RandomTeam()
-        {
-            Random rnd = new Random();
-            int r = rnd.Next(ChooseTeamsForGame().Count);
-            return teamsInGame[r];
+        //public Team RandomTeam()
+        //{
+        //    Random rnd = new Random();
+        //    int r = rnd.Next(ChooseTeamsForGame().Count);
+        //    return teamsInGame[r];
 
             
 
-        }
-        public  List<Team> ChooseTeams(List<Team> allTeams, List<Team> players)
-        {
-            while (players.Count < 2)
-            {
-                Random rnd = new Random();
-                int r = rnd.Next(allTeams.Count);
-                if (!players.Contains(allTeams[r]))
-                {
-                    players.Add(allTeams[r]);
-                    Console.WriteLine($"{(string)allTeams[r].Name}  is playing today");
-                }
-            }
-            return players;
+        //}
+        //public  List<Team> ChooseTeams(List<Team> allTeams, List<Team> players)
+        //{
+        //    while (players.Count < 2)
+        //    {
+        //        Random rnd = new Random();
+        //        int r = rnd.Next(allTeams.Count);
+        //        if (!players.Contains(allTeams[r]))
+        //        {
+        //            players.Add(allTeams[r]);
+        //            Console.WriteLine($"{(string)allTeams[r].Name}  is playing today");
+        //        }
+        //    }
+        //    return players;
 
-        }
+        //}
 
 
         public  Team ChooseTeam(List<Team> players)
@@ -85,10 +85,7 @@ namespace Repository
 
         }
 
-        Team ITeamModule.RandomTeam()
-        {
-            throw new NotImplementedException();
-        }
+       
         public List<Player> GetPlayers()
         {
             PlayerModule pl = new PlayerModule();
@@ -98,10 +95,16 @@ namespace Repository
         }
         public void AddToTeam(int IdPlayer, int IdTeam)
         {
-            var t = GetList().Select(t => t).Where(t => t.Id == IdTeam).FirstOrDefault();
+            var t = GetList().Select(t => t).Where(t => t.Id == IdTeam && ChooseTeamsForGame().Contains(t)).FirstOrDefault();
             var p = GetPlayers().Select(x => x).Where(x => x.Id == IdPlayer).FirstOrDefault();
-            
-            t.players.Add(p);
+            try
+            {
+                t.players.Add(p);
+            }
+            catch
+            {
+               Console.WriteLine( StringLiterals.NoSuchTeam);
+            }
         }
     }
 }

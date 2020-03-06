@@ -8,13 +8,6 @@ namespace Domain
     {
        
         public Team FavouriteTeam { get; set; }
-      
-        //public Referee(int Id,string Name,  Team FavouriteTeam,int experience)
-        //{
-        //    this.Id = Id;
-        //    this.Name = Name;
-        //    this.Experience = experience;
-        //    this.FavouriteTeam = FavouriteTeam;
-        //}
+
     }
 }

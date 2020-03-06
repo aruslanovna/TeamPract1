@@ -26,7 +26,7 @@ namespace TeamPract1.Events
         public void Whistle()
         {
             isActive = true;
-            ChangeScoreNotify?.Invoke(this, new GameEventArgs(Environment.NewLine + "ARE YOU READY? " + Environment.NewLine + "The game started! "));
+            ChangeScoreNotify?.Invoke(this, new GameEventArgs(StringLiterals.Whistle));
         }
 
 
@@ -35,9 +35,9 @@ namespace TeamPract1.Events
             var team = teamMod.GetList().Select(p => p).Where(p => p.players.Any(x => x.Id == playerId)).First();
             if (isActive == true)
             {
-                if (team.result < game.MaxScore)
+                if (team?.result < game.MaxScore)
                 {
-                    team.result += 1;
+                  //  team.result += 1;
                     ChangeScoreNotify?.Invoke(this, new GameEventArgs("Goal!!!" + Environment.NewLine + $"Team {team.Name} scored a goal. Now they have {team.result} points"));
                 }
                 else
@@ -89,15 +89,14 @@ namespace TeamPract1.Events
 
        public  void FinalResult()
         {
-            ChangeScoreNotify?.Invoke(this, new GameEventArgs("The last whistle! Thank you all for the game"));
+            ChangeScoreNotify?.Invoke(this, new GameEventArgs(StringLiterals.Final));
             isActive = false;
         }
         
         public void ShowScore(Team team1,Team team2)
         {
             
-                ChangeScoreNotify?.Invoke(this, new GameEventArgs($"{team1.Name} {team1.result} : {team2.Name} {team2.result}"));
-            
+                ChangeScoreNotify?.Invoke(this, new GameEventArgs($"{team1.Name} {team1.result} : {team2.Name} {team2.result}"));   
         }
     }
 }

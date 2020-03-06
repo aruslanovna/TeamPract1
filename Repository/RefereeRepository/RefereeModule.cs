@@ -18,7 +18,7 @@ namespace Repository
         public void LoadReferee()
         {
             refereeList = new List<Referee> {
-                new Referee() { Id = 1, Experience = 30, FavouriteTeam = teamMod.RandomTeam(), Name = "Ivan Petrovich" }
+                new Referee() { Id = 1, Experience = 30, FavouriteTeam = teamMod.ChooseTeam(teamMod.ChooseTeamsForGame()), Name = "Ivan Petrovich" }
 
                  };
         }

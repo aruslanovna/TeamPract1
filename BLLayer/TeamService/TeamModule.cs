@@ -16,16 +16,16 @@ namespace BLLayer
         }
         public Team ChooseTeam(List<Team> players)
         {
-           return _teamObj.ChooseTeam(players);
+            return _teamObj.ChooseTeam(players);
         }
         public void AddToTeam(int IdPlayer, int IdTeam)
         {
             _teamObj.AddToTeam(IdPlayer, IdTeam);
         }
-        public List<Team> ChooseTeams(List<Team> allTeams, List<Team> players)
-        {
-            return _teamObj.ChooseTeams(allTeams,players);
-        }
+        //public List<Team> ChooseTeams(List<Team> allTeams, List<Team> players)
+        //{
+        //    return _teamObj.ChooseTeams(allTeams,players);
+        //}
 
         public List<Team> ChooseTeamsForGame()
         {
@@ -42,9 +42,9 @@ namespace BLLayer
             return _teamObj.GetTeamById(Id);
         }
 
-        public Team RandomTeam()
-        {
-            return _teamObj.RandomTeam();
-        }
+        //public Team RandomTeam()
+        //{
+        //    return _teamObj.RandomTeam();
+        //}
     }
 }

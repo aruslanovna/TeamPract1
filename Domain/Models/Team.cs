@@ -10,8 +10,6 @@ namespace Domain
         public List<Player> players { get; set; }
         public int result { get; set; }
         public int Id { get; set; }
-
-       
-      
+   
     }
 }

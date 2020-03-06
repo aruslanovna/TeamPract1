@@ -28,7 +28,6 @@ namespace Repository
         }
 
 
-
         public void Shoot(int goalkeeperId, int attackerId)
         {
             var attacker = GetPlayers().Select(x => x).Where(x => x.Id == attackerId).FirstOrDefault();
@@ -36,8 +35,6 @@ namespace Repository
 
             if (goalKeeper.Lucky <= attacker.Lucky || goalKeeper.Experience <= attacker.Experience)
             {
-
-
                 var luckyTeam = teamMod.GetList().Select(p => p).Where(p => p.players.Any(x => x.Id == attackerId)).First();
                 luckyTeam.result += 1;
             }
